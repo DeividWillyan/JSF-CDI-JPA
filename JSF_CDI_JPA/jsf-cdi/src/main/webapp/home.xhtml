@@ -13,6 +13,9 @@
 </h:head>
 
 <h:body>
+
+	<p:growl autoUpdate="true" />
+
 	<div class="conteiner">
 		<h:graphicImage library="images" name="img_02.png" styleClass="img01" />
 
@@ -24,13 +27,13 @@
 
 					<h:outputText value="Nome: " />
 					<p:inputText value="#{pessoaBean.pessoa.nome}" size="30" />
-					<p:spacer/>
+					<p:spacer />
 
 					<h:outputText value="Sobre Nome: " />
 					<p:inputText value="#{pessoaBean.pessoa.sobrenome}" size="30" />
 
 					<p:commandButton value="Salvar" icon="ui-icon-disk"
-						actionListener="#{pessoaBean.editar}" update=":table :form"
+						actionListener="#{pessoaBean.salvar}" update=":table :form"
 						oncomplete="location.reload()"
 						style="margin-left:80%; color:#4f4f4f">
 					</p:commandButton>

@@ -10,6 +10,7 @@ import javax.inject.Named;
 
 import org.jsf.model.Pessoa;
 import org.jsf.repository.PessoaRepository;
+import org.jsf.util.FacesUtil;
 
 @Named
 @ViewScoped
@@ -39,27 +40,22 @@ public class PessoaBean implements Serializable {
 
 	public void salvar() {
 		try {
-			repository.save(pessoa);
-		} catch (RuntimeException e) {
-			e.printStackTrace();
-		}
-	}
-
-	public void editar() {
-		try {
 			if (!this.pessoa.getNome().isEmpty()) {
 				repository.edit(pessoa);
+				FacesUtil.msgInfo("Pessoa salva com sucesso!");
 			}
 		} catch (RuntimeException e) {
+			FacesUtil.msgErro("Erro ao salvar a pessoa!");
 			e.printStackTrace();
 		}
 	}
 
 	public void excluir(Pessoa pessoa) {
 		try {
-			System.out.println(pessoa.toString());
 			repository.remove(pessoa);
+			FacesUtil.msgInfo("Pessoa excluida com sucesso!");
 		} catch (RuntimeException e) {
+			FacesUtil.msgErro("Erro ao excluir a pessoa!");
 			e.printStackTrace();
 		}
 	}
@@ -69,4 +65,6 @@ public class PessoaBean implements Serializable {
 		pessoas = repository.findAll();
 	}
 
+	
+	
 }
